@@ -33,72 +33,55 @@ int _printf(const char *format, ...)
 	return (char_len);
 }
 
+
 /**
  * handle_flags - Entry point
  *
  * * @format: A pointer to the format string containing text and
  * format specifiers.
+ * * @i: Pointer to the current position in the format string
  * * @flags: Pointer to the flags struture
+ *
  *
  * Description: Handles flags in the format specifier and retrieves
  * the specifier.
  *
+ * Prototype: void _printf(const char *format, ...);
  *
- * Return: the specifier
+ * Return: the total number of characters written is returned.
  *
  */
 
-int handle_flags(char format, flags_t *flags)
+char *handle_flags(const char *format, int *i, flags_t *flags)
 {
-	int i = 0;
+	char *specifier = NULL;
 
-	switch (format)
+	switch (format[*i + 1])
 	{
 		case '+':
-			i = flags->plus = 1;
+			flags->plus = 1;
+			(*i)++;
 			break;
 		case ' ':
-			i = flags->space = 1;
+			flags->space = 1;
+			(*i)++;
 			break;
 		case '#':
-			i = flags->hash = 1;
+			flags->hash = 1;
+			(*i)++;
 			break;
-	}
-
-	return (i);
-}
-
-/**
- * handle_lengths - Entry point
- *
- * * @format: A pointer to the format string containing text and
- * format specifiers.
- * * @flags: Pointer to the flags struture
- *
- *
- * Description: Handles flags in the format specifier and retrieves
- * the specifier.
- *
- *
- * Return: the specifier
- *
- */
-
-int handle_lengths(char format, flags_t *flags)
-{
-	int i = 0;
-
-	switch (format)
-	{
 		case 'l':
-			i = flags->lg = 1;
+			flags->lg = 1;
+			(*i)++;
 			break;
 		case 'h':
-			i = flags->sh = 1;
+			flags->sh = 1;
+			(*i)++;
 			break;
 	}
 
-	return (i);
+	specifier = copy_str(format[*i + 1]);
+	return (specifier);
 }
 
 /**

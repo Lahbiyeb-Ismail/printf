@@ -31,19 +31,14 @@ int handle_format_specifier(const char *format, va_list args)
 		flags_init(&flags);
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == ' ' && (format[i + 2] == '+'
-				|| format[i + 2] == '#' || format[i + 2] == ' '))
-				return (-1);
-
-			while (handle_flags(format[i + 1], &flags))
-				i++;
 			if ((flags.plus && flags.space) || (flags.hash && flags.space))
 				return (-1);
-			while (handle_lengths(format[i + 1], &flags))
-				i++;
+
 			if (flags.lg && flags.sh)
 				return (-1);
-			specifier = copy_str(format[i + 1]);
+
+			specifier = handle_flags(format, &i, &flags);
+
 			if (!specifier)
 				return (-1);
 			get_specifier = get_print_format(specifier);
@@ -52,12 +47,15 @@ int handle_format_specifier(const char *format, va_list args)
 				char_len += _putchar(format[i + 1]);
 				free(specifier);
 				continue;
-			} get_specifier(&char_len, args, &flags);
+			}
+			get_specifier(&char_len, args, &flags);
 			free(specifier);
 			i++;
 			continue;
-		} char_len += _putchar(format[i]);
+		}
+		char_len += _putchar(format[i]);
 	}
+
 	_putchar(-1);
 	return (char_len);
 }
