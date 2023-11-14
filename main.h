@@ -67,4 +67,7 @@ void print_ascii(int *char_len, va_list args, flags_t *flags);
 /* TASK --> 6 */
 void print_address(int *char_len, va_list args, flags_t *flags);
 
+/* TASK --> 13 */
+void print_rev(int *char_len, va_list args, flags_t *flags);
+
 #endif
