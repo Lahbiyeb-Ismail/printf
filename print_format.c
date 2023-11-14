@@ -39,17 +39,6 @@ void (*get_print_format(char *spc))(int *char_len, va_list args, flags_t *f)
 			{"c", print_char},
 			{"s", print_str},
 			{"%", print_perc },
-			{"d", print_dec },
-			{"i", print_dec },
-			{"b", print_bin },
-			{"u", print_un },
-			{"o", print_oct },
-			{"x", print_hex },
-			{"X", print_HEX },
-			{"S", print_ascii },
-			{"p", print_address },
-			{"r", print_rev },
-			{"R", print_rot13 },
 			{NULL, NULL}
 	};
 	int i;
