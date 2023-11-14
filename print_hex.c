@@ -16,7 +16,12 @@
 void print_hex(int *char_len, va_list args, flags_t *flags)
 {
 	unsigned int n = (unsigned int)va_arg(args, int);
-	(void)flags;
+
+	if (flags->hash == 1)
+	{
+		(*char_len) += _putchar('0');
+		(*char_len) += _putchar('x');
+	}
 
 	print_num_base(char_len, (long)n, 16, 0);
 
