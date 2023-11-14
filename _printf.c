@@ -55,7 +55,7 @@ int handle_format_specifier(const char *format, va_list args)
 {
 	int i, char_len;
 	char *specifier;
-	flags_t flags = { 0, 0, 0 };
+	flags_t flags = { 0, 0, 0, 0, 0 };
 	void (*get_specifier)(int *, va_list, flags_t *);
 
 	i = 0, char_len = 0;
@@ -106,9 +106,8 @@ int handle_format_specifier(const char *format, va_list args)
  * Description: Handles flags in the format specifier and retrieves
  * the specifier.
  *
- * Prototype: void _printf(const char *format, ...);
  *
- * Return: the total number of characters written is returned.
+ * Return: the specifier
  *
  */
 
@@ -128,6 +127,14 @@ char *handle_flags(const char *format, int *i, flags_t *flags)
 			break;
 		case '#':
 			flags->hash = 1;
+			(*i)++;
+			break;
+		case 'l':
+			flags->lg = 1;
+			(*i)++;
+			break;
+		case 'h':
+			flags->sh = 1;
 			(*i)++;
 			break;
 	}

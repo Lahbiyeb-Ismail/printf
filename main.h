@@ -17,6 +17,8 @@
  * a blank space is inserted befor the value)
  * * @hash: flag for the '#' (Used with o, x or X specifiers the value is
  * preceeded with 0, 0x or 0X respectively for values different than zero.)
+ * * @lg: flag for the 'l' (long) length (Used with d, i, u, o, x, X)
+ * * @sh: flag for the 'h' (short) length (Used with d, i, u, o, x, X)
  *
  */
 typedef struct flags
@@ -24,6 +26,8 @@ typedef struct flags
 	int plus;
 	int space;
 	int hash;
+	int lg;
+	int sh;
 } flags_t;
 
 /**

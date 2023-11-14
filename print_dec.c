@@ -15,7 +15,14 @@
 
 void print_dec(int *char_len, va_list args, flags_t *flags)
 {
-	long n = (long)va_arg(args, int);
+	long n;
+
+	if (flags->lg)
+		n = va_arg(args, long);
+	else if (flags->sh)
+		n = (short int)va_arg(args, int);
+	else
+		n = va_arg(args, int);
 
 	if (flags->space == 1 && flags->plus == 0 && n >= 0)
 		(*char_len) += _putchar(' ');
