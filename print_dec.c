@@ -5,7 +5,7 @@
  *
  *  * @char_len: the total number of characters written
  *  * @args: int to print
- *  * @flags: flag for the '#'
+ *  * @flags: flag for the '+' && ' '
  *
  * Description: Function that print decimal numbers
  *
@@ -24,7 +24,7 @@ void print_dec(int *char_len, va_list args, flags_t *flags)
 	else
 		n = va_arg(args, int);
 
-	if (flags->space && n >= 0)
+	if (flags->space && !flags->plus && n >= 0)
 		(*char_len) += _putchar(' ');
 
 	if (flags->plus && n >= 0)
