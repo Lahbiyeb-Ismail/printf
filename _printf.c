@@ -64,12 +64,13 @@ int handle_format_specifier(const char *format, va_list args)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == ' ' && (format[i + 2] == '+'
-				|| format[i + 2] == '#' || format[i + 2] == ' '))
-				return (-1);
+			while (handle_flags(format[i + 1], &flags))
+				i++;
 
-			specifier = handle_flags(format, &i, &flags);
+			if (handle_lengths(format[i + 1], &flags))
+				i++;
 
+			specifier = copy_str(format[i + 1]);
 			if (!specifier)
 				return (-1);
 
@@ -87,9 +88,7 @@ int handle_format_specifier(const char *format, va_list args)
 		}
 		char_len += _putchar(format[i]);
 	}
-
 	_putchar(-1);
-
 	return (char_len);
 }
 
@@ -99,7 +98,41 @@ int handle_format_specifier(const char *format, va_list args)
  *
  * * @format: A pointer to the format string containing text and
  * format specifiers.
- * * @i: Pointer to the current position in the format string
+ * * @flags: Pointer to the flags struture
+ *
+ * Description: Handles flags in the format specifier and retrieves
+ * the specifier.
+ *
+ *
+ * Return: the specifier
+ *
+ */
+
+int handle_flags(char format, flags_t *flags)
+{
+	int i = 0;
+
+	switch (format)
+	{
+		case '+':
+			i = flags->plus = 1;
+			break;
+		case ' ':
+			i = flags->space = 1;
+			break;
+		case '#':
+			i = flags->hash = 1;
+			break;
+	}
+
+	return (i);
+}
+
+/**
+ * handle_lengths - Entry point
+ *
+ * * @format: A pointer to the format string containing text and
+ * format specifiers.
  * * @flags: Pointer to the flags struture
  *
  *
@@ -111,35 +144,20 @@ int handle_format_specifier(const char *format, va_list args)
  *
  */
 
-char *handle_flags(const char *format, int *i, flags_t *flags)
+int handle_lengths(char format, flags_t *flags)
 {
-	char *specifier = NULL;
+	int i = 0;
 
-	switch (format[*i + 1])
+	switch (format)
 	{
-		case '+':
-			flags->plus = 1;
-			(*i)++;
-			break;
-		case ' ':
-			flags->space = 1;
-			(*i)++;
-			break;
-		case '#':
-			flags->hash = 1;
-			(*i)++;
-			break;
 		case 'l':
-			flags->lg = 1;
-			(*i)++;
+			i = flags->lg = 1;
 			break;
 		case 'h':
-			flags->sh = 1;
-			(*i)++;
+			i = flags->sh = 1;
 			break;
 	}
 
-	specifier = copy_str(format[*i + 1]);
-	return (specifier);
+	return (i);
 }
 
