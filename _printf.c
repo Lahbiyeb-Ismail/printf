@@ -50,6 +50,7 @@ int _printf(const char *format, ...)
  * output (stdout). Returns -1 if an error occurs during processing.
  *
  */
+
 int handle_format_specifier(const char *format, va_list args)
 {
 	int i, char_len;
@@ -75,20 +76,20 @@ int handle_format_specifier(const char *format, va_list args)
 			get_specifier = get_print_format(specifier);
 			if (!get_specifier)
 			{
-				char_len += write(1, &(format[i]), 1);
+				char_len += _putchar(format[i]);
 				free(specifier);
 				continue;
 			}
-
-
 			get_specifier(&char_len, args, &flags);
 			free(specifier);
 			i++;
 			continue;
-
 		}
-		char_len += write(1, &(format[i]), 1);
+		char_len += _putchar(format[i]);
 	}
+
+	_putchar(-1);
+
 	return (char_len);
 }
 

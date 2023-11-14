@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/* TASK --> 4 */
+#define BUFFER_SIZE 1024
+
 /**
  * struct flags - struct containing flags to "turn on"
  *
