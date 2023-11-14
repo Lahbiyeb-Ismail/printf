@@ -52,4 +52,7 @@ void print_perc(int *char_len, va_list args, flags_t *flags);
 /* TASK --> 1 */
 void print_dec(int *char_len, va_list args, flags_t *flags);
 
+/* TASK --> 2 */
+void print_bin(int *char_len, va_list args, flags_t *flags);
+
 #endif
