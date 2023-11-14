@@ -46,6 +46,7 @@ void (*get_print_format(char *spc))(int *char_len, va_list args, flags_t *f)
 			{"o", print_oct },
 			{"x", print_hex },
 			{"X", print_HEX },
+			{"S", print_ascii },
 			{NULL, NULL}
 	};
 	int i;

@@ -61,4 +61,7 @@ void print_oct(int *char_len, va_list args, flags_t *flags);
 void print_hex(int *char_len, va_list args, flags_t *flags);
 void print_HEX(int *char_len, va_list args, flags_t *flags);
 
+/* TASK --> 5 */
+void print_ascii(int *char_len, va_list args, flags_t *flags);
+
 #endif
