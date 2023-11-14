@@ -38,3 +38,44 @@ void print_address(int *char_len, va_list args, flags_t *flags)
 
 	va_end(args);
 }
+
+/**
+ * print_hex_addr - prints an hexadecimal number.
+ *
+ * @num: arguments.
+ *
+ * Return: char_len
+ */
+
+int print_hex_addr(unsigned long int num)
+{
+	long int i;
+	long int *array;
+	long int char_len = 0;
+	unsigned long int temp = num;
+
+	while (num / 16 != 0)
+	{
+		num /= 16;
+		char_len++;
+	}
+
+	char_len++;
+	array = malloc(char_len * sizeof(long int));
+
+	for (i = 0; i < char_len; i++)
+	{
+		array[i] = temp % 16;
+		temp /= 16;
+	}
+
+	for (i = char_len - 1; i >= 0; i--)
+	{
+		if (array[i] > 9)
+			array[i] = array[i] + 39;
+		_putchar(array[i] + '0');
+	}
+
+	free(array);
+	return (char_len);
+}
