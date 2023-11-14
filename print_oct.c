@@ -1,24 +1,25 @@
 #include "main.h"
 
+
 /**
- * print_hex - Entry point
+ * print_oct - Entry point
  *
  *  * @char_len: the total number of characters written
  *  * @args: int to print
  *  * @flags: flag for the '#'
  *
- * Description: Function that print hexadecimal numbers (base 16)
+ * Description: Function that print octal numbers (base 8)
  *
  * Return: void
  *
  */
 
-void print_hex(int *char_len, va_list args, flags_t *flags)
+void print_oct(int *char_len, va_list args, flags_t *flags)
 {
 	unsigned int n = (unsigned int)va_arg(args, int);
 	(void)flags;
 
-	print_num_base(char_len, (long)n, 16, 0);
+	print_num_base(char_len, (long)n, 8, 0);
 
 	va_end(args);
 }

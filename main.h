@@ -55,4 +55,10 @@ void print_dec(int *char_len, va_list args, flags_t *flags);
 /* TASK --> 2 */
 void print_bin(int *char_len, va_list args, flags_t *flags);
 
+/* TASK --> 3 */
+void print_un(int *char_len, va_list args, flags_t *flags);
+void print_oct(int *char_len, va_list args, flags_t *flags);
+void print_hex(int *char_len, va_list args, flags_t *flags);
+void print_HEX(int *char_len, va_list args, flags_t *flags);
+
 #endif
