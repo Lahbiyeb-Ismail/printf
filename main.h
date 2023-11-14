@@ -50,7 +50,8 @@ void (*get_print_format(char *spc))(int *char_len, va_list args, flags_t *f);
 
 int _printf(const char *format, ...);
 int handle_format_specifier(const char *format, va_list args);
-char *handle_flags(const char *format, int *i, flags_t *flags);
+int handle_flags(char format, flags_t *flags);
+int handle_lengths(char format, flags_t *flags);
 void flags_init(flags_t *flags);
 
 /* TASK --> 0 */
