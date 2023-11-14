@@ -42,9 +42,14 @@ int _putchar(char c);
 void (*get_print_format(char *spc))(int *char_len, va_list args, flags_t *f);
 char *copy_str(char c1);
 
+void print_num_base(int *char_len, long n, int base, int uppercase);
+
 /* TASK --> 0 */
 void print_char(int *char_len, va_list args, flags_t *flags);
 void print_str(int *char_len, va_list args, flags_t *flags);
 void print_perc(int *char_len, va_list args, flags_t *flags);
+
+/* TASK --> 1 */
+void print_dec(int *char_len, va_list args, flags_t *flags);
 
 #endif
