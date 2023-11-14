@@ -62,6 +62,7 @@ int handle_format_specifier(const char *format, va_list args)
 
 	for (; format[i]; i++)
 	{
+		flags_init(&flags);
 		if (format[i] == '%')
 		{
 			while (handle_flags(format[i + 1], &flags))
@@ -91,7 +92,6 @@ int handle_format_specifier(const char *format, va_list args)
 	_putchar(-1);
 	return (char_len);
 }
-
 
 /**
  * handle_flags - Entry point
@@ -161,3 +161,25 @@ int handle_lengths(char format, flags_t *flags)
 	return (i);
 }
 
+/**
+ * flags_init - Entry point
+ *
+ * * @flags: Pointer to the flags struture
+ *
+ *
+ * Description: function that reset all the values in the flags struct
+ *
+ *
+ * Return: void
+ *
+ */
+
+void flags_init(flags_t *flags)
+{
+	flags->plus = 0;
+	flags->space = 0;
+	flags->hash = 0;
+
+	flags->lg = 0;
+	flags->sh = 0;
+}

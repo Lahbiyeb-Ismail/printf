@@ -24,10 +24,10 @@ void print_dec(int *char_len, va_list args, flags_t *flags)
 	else
 		n = va_arg(args, int);
 
-	if (flags->space == 1 && flags->plus == 0 && n >= 0)
+	if (flags->space && n >= 0)
 		(*char_len) += _putchar(' ');
 
-	if (flags->plus == 1 && n >= 0)
+	if (flags->plus && n >= 0)
 		(*char_len) += _putchar('+');
 
 	print_num_base(char_len, n, 10, 0);
